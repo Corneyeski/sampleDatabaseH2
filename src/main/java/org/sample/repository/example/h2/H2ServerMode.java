@@ -1,4 +1,4 @@
-package org.sample.repository;
+package org.sample.repository.example.h2;
 
 import java.sql.*;
 
