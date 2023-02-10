@@ -29,8 +29,8 @@ public class H2EmbeddedExample {
 
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
-
         int count = 0;
+
 
         while (resultSet.next()) {
             count++;

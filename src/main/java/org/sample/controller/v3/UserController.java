@@ -2,6 +2,8 @@ package org.sample.controller.v3;
 
 import org.sample.dto.UserDto;
 import org.sample.exceptions.ResourceNotFoundException;
+import org.sample.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,13 @@ import static org.sample.config.ConstantsApp.USER_V3;
 @RestController
 @RequestMapping(USER_V3)
 public class UserController {
+
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     /**
      * Get a user by its id, if the id equals to 0, it will return a not found response
@@ -53,6 +62,10 @@ public class UserController {
      */
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto user){
+
+
+        userService.example(1L);
+
         if(user.getName().isEmpty())
             return ResponseEntity.status(HttpStatus.CREATED).body(user);
         else return ResponseEntity.badRequest().build();
