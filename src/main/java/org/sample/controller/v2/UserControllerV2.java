@@ -61,7 +61,7 @@ public class UserControllerV2 {
      */
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto user){
-        if(user.getName().isEmpty())
+        if(!user.getName().isEmpty())
             return ResponseEntity.status(HttpStatus.CREATED).body(user);
         else return ResponseEntity.badRequest().build();
     }

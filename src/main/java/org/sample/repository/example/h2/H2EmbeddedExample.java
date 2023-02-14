@@ -31,12 +31,12 @@ public class H2EmbeddedExample {
         ResultSet resultSet = statement.executeQuery(sql);
         int count = 0;
 
-
         while (resultSet.next()) {
             count++;
 
             int ID = resultSet.getInt("ID");
             String name = resultSet.getString("name");
+
             System.out.println("Student #" + count + ": " + ID + ", " + name);
         }
 

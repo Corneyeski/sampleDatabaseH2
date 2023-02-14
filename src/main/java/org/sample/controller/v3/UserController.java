@@ -33,10 +33,10 @@ public class UserController {
      *
      */
     @GetMapping("/{id}")
-    public UserDto getUser(@PathVariable Long id){
+    public UserDto getUser(@PathVariable int id){
         if(id == 0)
             throw new ResourceNotFoundException("User not found");
-        else return new UserDto();
+        else return userService.findUserById(id);
     }
 
 
@@ -49,7 +49,7 @@ public class UserController {
      */
     @GetMapping("/all")
     public ResponseEntity<List<UserDto>> getAllUsers() {
-        return ResponseEntity.ok(Collections.emptyList());
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 
     /**
@@ -61,14 +61,8 @@ public class UserController {
      * @return HttpStatus.BAD_REQUEST
      */
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto user){
-
-
-        userService.example(1L);
-
-        if(user.getName().isEmpty())
-            return ResponseEntity.status(HttpStatus.CREATED).body(user);
-        else return ResponseEntity.badRequest().build();
+    public ResponseEntity<Integer> createUser(@RequestBody UserDto user){
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
     }
 
 
