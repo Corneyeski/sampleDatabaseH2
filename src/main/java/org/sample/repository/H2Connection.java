@@ -10,11 +10,9 @@ import java.sql.SQLException;
 public class H2Connection {
     public static Connection connection;
 
-    static {
+    public H2Connection() {
         connection = initializeConnection();
     }
-
-    private H2Connection() {}
 
     public static Connection getConnection() {
         if(connection == null)
