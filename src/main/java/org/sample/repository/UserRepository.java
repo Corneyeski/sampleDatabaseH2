@@ -16,6 +16,7 @@ import static org.sample.repository.H2Connection.getConnection;
 public class UserRepository {
 
     private final String usersTable = "USERS";
+    private final String SELECT = "SELECT";
 
     public List<User> findAll() {
         String sql = "SELECT * FROM " + usersTable;
@@ -23,7 +24,7 @@ public class UserRepository {
         List<User> users = new ArrayList<>();
 
         try (Statement statement = getConnection().createStatement()) {
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeLargeUpdate(sql);
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
