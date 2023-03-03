@@ -16,7 +16,7 @@ public class H2Connection {
 
     public static Connection getConnection() {
         if(connection == null)
-            return initializeConnection();
+            connection = initializeConnection();
         return connection;
     }
 

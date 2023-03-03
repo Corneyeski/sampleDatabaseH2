@@ -1,10 +1,6 @@
 package org.sample.repository.example.h2;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class H2EmbeddedExample {
 
@@ -25,10 +21,10 @@ public class H2EmbeddedExample {
         Connection connection = DriverManager.getConnection(url, username, password);
         System.out.println("Connected to H2 embedded database.");
 
-        String sql = "SELECT * FROM students";
+        String query = "SELECT * FROM students";
 
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(sql);
+        ResultSet resultSet = statement.executeQuery(query);
         int count = 0;
 
         while (resultSet.next()) {
