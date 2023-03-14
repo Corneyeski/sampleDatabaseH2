@@ -24,7 +24,7 @@ public class UserRepository {
         List<User> users = new ArrayList<>();
 
         try (Statement statement = getConnection().createStatement()) {
-            ResultSet resultSet = statement.executeLargeUpdate(sql);
+            ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -65,16 +65,18 @@ public class UserRepository {
     public User createUser(User user) {
         String sql = "INSERT INTO " + usersTable + " (name, lastname, password) " + "VALUES (?, ?, ?)";
 
-        try (PreparedStatement preparedStatement = getConnection().prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(sql, Statement.NO_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getLastname());
             preparedStatement.setString(3, user.getPassword());
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
 
             if (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt(1);
                 user.setId(id);
             } else {
                 System.out.println("User could not be created");

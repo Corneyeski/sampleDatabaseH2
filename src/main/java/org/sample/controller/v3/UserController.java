@@ -33,7 +33,7 @@ public class UserController {
      *
      */
     @GetMapping("/{id}")
-    public UserDto getUser(@PathVariable int id){
+    public UserDto getUser(@PathVariable int id) {
         if(id == 0)
             throw new ResourceNotFoundException("User not found");
         else return userService.findUserById(id);
