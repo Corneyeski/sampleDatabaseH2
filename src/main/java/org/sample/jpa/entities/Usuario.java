@@ -1,11 +1,9 @@
 package org.sample.jpa.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "usuario")
 public class Usuario {
 
     @Id
@@ -18,25 +16,7 @@ public class Usuario {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private Enfermero enfermero;
-
     public Usuario() {
-    }
-
-    public Usuario(Integer id, String name, String lastname, String password) {
-        this.id = id;
-        this.name = name;
-        this.lastname = lastname;
-        this.password = password;
-    }
-
-    public Usuario(Integer id, String name, String lastname, String password, Enfermero enfermero) {
-        this.id = id;
-        this.name = name;
-        this.lastname = lastname;
-        this.password = password;
-        this.enfermero = enfermero;
     }
 
     public Usuario(String name, String lastname, String password) {
@@ -75,13 +55,5 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Enfermero getEnfermero() {
-        return enfermero;
-    }
-
-    public void setEnfermero(Enfermero enfermero) {
-        this.enfermero = enfermero;
     }
 }
