@@ -51,7 +51,6 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
@@ -64,7 +63,6 @@
                     </schemas>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 

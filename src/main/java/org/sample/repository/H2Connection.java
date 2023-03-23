@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class H2Connection {
-    public static Connection connection;
+    private static Connection connection;
 
     public H2Connection() {
         connection = initializeConnection();

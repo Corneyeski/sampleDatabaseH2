@@ -1,5 +1,6 @@
 package org.sample.dto;
 
+//DATA TRANSFER OBJECT
 public class UserDto {
     private int id;
     private String name;
